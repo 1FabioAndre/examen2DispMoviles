@@ -63,6 +63,11 @@ dependencies {
     kapt(libs.hilt.compiler)
 
     implementation("androidx.navigation:navigation-compose:2.7.5")
+
+    implementation(project(":data"))
+    implementation(project(":domain"))
+    implementation(project(":usecases"))
+    implementation(project(":framework"))
 }
 
 kapt {

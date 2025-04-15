@@ -46,6 +46,14 @@ dependencies {
 
     implementation(libs.hilt)
     kapt(libs.hilt.compiler)
+
+    implementation(project(":domain"))
+    implementation(project(":usecases"))
+    implementation(project(":data"))
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.moshi)
+    implementation(libs.gson.converter)
 }
 
 kapt {

@@ -1,6 +1,7 @@
 package com.webservices.data.repository
 
 import com.webservices.domain.model.Book
+import com.webservices.domain.repository.BookRepository
 import com.webservices.data.model.BookDto
 import com.webservices.data.remote.BookApiService
 

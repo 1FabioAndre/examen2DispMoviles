@@ -1,5 +1,8 @@
 package com.webservices.usecases
 
+import com.webservices.domain.repository.BookRepository
+import com.webservices.domain.model.Book
+
 class SearchBooksUseCase(
     private val repository: BookRepository
 ) {

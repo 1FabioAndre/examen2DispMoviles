@@ -42,6 +42,7 @@ moshi = { group = "com.squareup.moshi", name = "moshi", version.ref= "moshi"}
 moshi-kapt = { group = "com.squareup.moshi", name = "moshi-kotlin-codegen", version.ref= "moshi"}
 converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref= "retrofit"}
 retrofit-coroutines = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlin-coroutines-adapter", version.ref= "retrofitCoroutines"}
+gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
