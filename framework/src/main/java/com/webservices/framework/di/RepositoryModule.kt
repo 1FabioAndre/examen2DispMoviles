@@ -1,0 +1,17 @@
+package com.webservices.framework.di
+
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import com.webservices.data.remote.BookApiService
+import com.webservices.domain.repository.BookRepository
+import com.webservices.data.repository.BookRepositoryImpl
+
+@Module
+@InstallIn(SingletonComponent::class)
+object RepositoryModule {
+    @Provides
+    fun provideBookRepository(api: BookApiService): BookRepository =
+        BookRepositoryImpl(api)
+}
