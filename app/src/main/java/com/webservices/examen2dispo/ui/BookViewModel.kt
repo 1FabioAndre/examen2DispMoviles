@@ -17,10 +17,8 @@ class BookViewModel @Inject constructor(
     private val searchBooksUseCase: SearchBooksUseCase
 ) : ViewModel() {
 
-    // Cambiar esto a una propiedad de tipo MutableState
     private val _searchQuery = mutableStateOf("")
 
-    // Hacer que searchQuery sea un getter para el estado
     val searchQuery: String get() = _searchQuery.value
 
     private val _books = MutableLiveData<List<Book>>()
@@ -29,7 +27,6 @@ class BookViewModel @Inject constructor(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
-    // Esta función permite modificar el valor de searchQuery desde la UI
     fun onSearchQueryChange(newQuery: String) {
         _searchQuery.value = newQuery
     }

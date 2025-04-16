@@ -30,25 +30,22 @@ import androidx.navigation.NavController
 
 @Composable
 fun SearchBookScreen(navController: NavController, viewModel: BookViewModel = hiltViewModel()) {
-    // Obtener el estado de los libros y la carga del ViewModel
     val books by viewModel.books.observeAsState(emptyList())
     val loading by viewModel.loading.observeAsState(false)
 
-    // Se agrega el estado local para manejar el texto de la búsqueda
     var searchQuery by remember { mutableStateOf("") }
 
     Column(modifier = Modifier.padding(16.dp)) {
-        // Se usa la variable de estado local searchQuery, no viewModel.searchQuery
         TextField(
             value = searchQuery,
-            onValueChange = { searchQuery = it },  // Actualiza el estado local searchQuery
+            onValueChange = { searchQuery = it },
             label = { Text("Buscar libro") },
             modifier = Modifier.fillMaxWidth()
         )
 
         Button(
             onClick = {
-                viewModel.searchBooks(searchQuery)  // Usamos el searchQuery local para la búsqueda
+                viewModel.searchBooks(searchQuery)
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -57,11 +54,9 @@ fun SearchBookScreen(navController: NavController, viewModel: BookViewModel = hi
             Text("Buscar")
         }
 
-        // Muestra un indicador de carga mientras se están buscando los libros
         if (loading) {
             CircularProgressIndicator()
         } else {
-            // Muestra la lista de libros
             LazyColumn {
                 items(books) { book ->
                     BookItem(book = book)
