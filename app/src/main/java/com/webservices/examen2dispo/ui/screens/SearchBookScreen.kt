@@ -27,6 +27,19 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.NavController
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.SnackbarHostState
+import androidx.compose.material.Snackbar
+import androidx.compose.material.rememberScaffoldState
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
+import androidx.compose.runtime.rememberCoroutineScope
+
+
 
 @Composable
 fun SearchBookScreen(navController: NavController, viewModel: BookViewModel = hiltViewModel()) {
@@ -68,11 +81,43 @@ fun SearchBookScreen(navController: NavController, viewModel: BookViewModel = hi
 
 @Composable
 fun BookItem(book: Book) {
-    Card(modifier = Modifier.padding(8.dp)) {
-        Column(modifier = Modifier.padding(8.dp)) {
-            Text(text = book.title, fontWeight = FontWeight.Bold)
-            Text(text = "Autores: ${book.authors.joinToString()}")
-            Text(text = "Año: ${book.year}")
+    val scaffoldState = rememberScaffoldState()
+    val snackbarHostState = scaffoldState.snackbarHostState
+    val coroutineScope = rememberCoroutineScope()
+
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column(modifier = Modifier.weight(1f)) {
+                Text(text = book.title, fontWeight = FontWeight.Bold)
+                Text(text = "Autores: ${book.authors.joinToString()}")
+                Text(text = "Año: ${book.year}")
+            }
+
+            IconButton(onClick = {
+                coroutineScope.launch {
+                    snackbarHostState.showSnackbar("Añadido a favoritos")
+                }
+            }) {
+                Icon(Icons.Default.Favorite, contentDescription = "Like")
+            }
         }
+    }
+
+    LaunchedEffect(true) {
+        // para mantener el SnackbarHost activo
+    }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        SnackbarHost(hostState = snackbarHostState)
     }
 }
