@@ -48,7 +48,7 @@ fun SearchBookScreen(navController: NavController, viewModel: BookViewModel = hi
 
         Button(
             onClick = {
-                viewModel.searchBooks(searchQuery)  // Usamos el searchQuery local para la búsqueda
+                viewModel.searchBooks(searchQuery)
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -57,11 +57,9 @@ fun SearchBookScreen(navController: NavController, viewModel: BookViewModel = hi
             Text("Buscar")
         }
 
-        // Muestra un indicador de carga mientras se están buscando los libros
         if (loading) {
             CircularProgressIndicator()
         } else {
-            // Muestra la lista de libros
             LazyColumn {
                 items(books) { book ->
                     BookItem(book = book)

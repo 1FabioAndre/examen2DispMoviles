@@ -1,7 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
+    //alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.compose") version "2.0.0"
     alias(libs.plugins.kapt)
     alias(libs.plugins.hilt)
 }
@@ -80,6 +81,10 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata:1.4.0")
 
     implementation("androidx.navigation:navigation-compose:2.7.5")
+
+    // Room dependencies
+    implementation("androidx.room:room-runtime:2.5.0")
+    kapt("androidx.room:room-compiler:2.5.0")
 
     implementation(project(":data"))
     implementation(project(":domain"))
