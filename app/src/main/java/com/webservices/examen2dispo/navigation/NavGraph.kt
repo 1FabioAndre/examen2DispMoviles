@@ -9,7 +9,7 @@ import com.webservices.examen2dispo.ui.screens.FavoriteBooksScreen
 import com.webservices.examen2dispo.ui.screens.SearchBookScreen
 
 @Composable
-fun AppNavGraph(navController: NavHostController = rememberNavController()) {
+fun AppNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "search") {
 
         composable("search") {
